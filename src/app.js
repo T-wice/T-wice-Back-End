@@ -2,6 +2,7 @@ const express = require('express');
 const morgan = require('morgan');
 const bodyparser = require('body-parser');
 const path = require('path');
+const cors = require('cors')
 
 const database = require('./models').connect;
 const routes = require('./routes');
@@ -9,6 +10,8 @@ const routes = require('./routes');
 const app = express();
 
 app.use('/static', express.static(path.join(__dirname, '../resources')));
+
+app.use(cors())
 
 app.use(bodyparser.urlencoded({
   extended: true
