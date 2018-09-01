@@ -13,6 +13,10 @@ exports.question = async (parent_id) => {
     delete item.question;
     item.isLeaf = item.is_leaf === 0 ? false : true;
     item.targetUrl = item.target_url;
+    item.nextQuestionId = item.next_question_id;
+    delete item.target_url;
+    delete item.is_leaf;
+    delete item.next_question_id;
     return item;
   });
 
