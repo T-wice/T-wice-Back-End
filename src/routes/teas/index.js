@@ -2,7 +2,18 @@ const router = require('express').Router();
 const teas = require('./teas');
 const db = require('../../models').connect();
 
+
 router.route('/:tea_id').get(teas.getTea);
+addAnswerCount = (ansIds, conn) => {
+
+    var timeStamp = new Date().getTime();
+
+    var inputs = ansIds.map(element => {
+        return `(${element}, ${timeStamp})`;
+    }).join(',');
+
+    conn.query(`INSERT INTO answer_results(answer_id, created_at) VALUES ${inputs}`);
+}
 
 whereClause = async (req, conn) => {
     var resultStr = "";
@@ -14,6 +25,8 @@ whereClause = async (req, conn) => {
         var whereStr = "";
         if (ansIds && ansIds.length > 0) {
             whereStr = `WHERE answer_id IN (${ansIds.join(',')})`;
+
+            addAnswerCount(ansIds, conn);
         }
 
         console.log(whereStr);
