@@ -1,14 +1,17 @@
 const express = require('express');
 const morgan = require('morgan');
 const bodyparser = require('body-parser');
-const database = require('./models').connect;
+const path = require('path');
 
+const database = require('./models').connect;
 const routes = require('./routes');
 
 const app = express();
 
+app.use('/static', express.static(path.join(__dirname, '../resources')));
+
 app.use(bodyparser.urlencoded({
-  extended: false
+  extended: true
 }));
 
 app.use(bodyparser.json());
