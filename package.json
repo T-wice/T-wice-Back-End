@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "init": "sudo npm install nodemon -g",
-    "dev": "nodemon src/app.js",
+    "dev": "PORT=8080 nodemon src/app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -20,7 +20,6 @@
   "homepage": "https://github.com/T-wice/T-wice-Back-End#readme",
   "dependencies": {
     "body-parser": "^1.18.3",
-    "dotenv": "^6.0.0",
     "express": "^4.16.3",
     "morgan": "^1.9.0",
     "mysql": "^2.16.0"
