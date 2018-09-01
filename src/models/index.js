@@ -1,18 +1,15 @@
-const mysql = require('mysql');
+const mariadb = require('mariadb');
 
-const connection = mysql.createConnection({
-  host     : '35.221.106.237',
-  user     : 'root',
-  password : '',
-  database : 'twice'
-});
-
-exports.connect = () => {
-  return connection.connect(function(err) {
-    if (err) {
-      throw new Error(err);
-    } else {
-      console.log('connection database');
-    }
+exports.connect = async () => {
+  const connection = await mariadb.createConnection({
+    host     : '35.221.106.237',
+    user     : 'root',
+    password : '',
+    database : 'twice'
   });
+  try {
+    return await connection.connect();
+  } catch(err) {
+    throw new Error('database connection error', err);
+  }
 }
