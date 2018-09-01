@@ -1,14 +1,14 @@
 const mysql = require('mysql');
 
 const connection = mysql.createConnection({
-  host     : '127.0.0.1',
+  host     : '35.221.106.237',
   user     : 'root',
-  password : 'kyera12589',
+  password : '',
   database : 'twice'
 });
 
 exports.connect = () => {
-  connection.connect(function(err) {
+  return connection.connect(function(err) {
     if (err) {
       throw new Error(err);
     } else {
