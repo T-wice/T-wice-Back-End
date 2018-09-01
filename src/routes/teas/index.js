@@ -42,6 +42,8 @@ whereClause = async (req, conn) => {
         if (resultStr.length > 0) {
             resultStr = "WHERE " + resultStr;
         }
+    } else if (req.query.keyword) {
+        resultStr = `WHERE teas.name like '%${req.query.keyword}%'`;
     }
     return resultStr;
 }
