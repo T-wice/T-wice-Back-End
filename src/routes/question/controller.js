@@ -17,6 +17,7 @@ exports.question = async (req, res) => {
     response["question"] = query[0].question;
     response["answers"] = query.map((item) => {
       delete item.question;
+      item.is_leaf = item.is_leaf === 0 ? false : true;
       return item;
     });
 
